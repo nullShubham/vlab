@@ -1,0 +1,169 @@
+@import "tailwindcss";
+@plugin "@tailwindcss/forms";
+@plugin "@tailwindcss/container-queries";
+
+@theme {
+  /* Colors — use --color-* namespace for TW v4 utilities */
+  --color-v1-primary: #6200ea;
+  --color-v1-primary-light: #a36bfb;
+  --color-v1-primary-dark: #3700b3;
+  --color-v1-secondary: #257bf4;
+
+  --color-v2-primary: #6200ee;
+  --color-v2-primary-light: #9c47ff;
+  --color-v2-primary-dark: #3700b3;
+  --color-v2-accent: #00e5ff;
+
+  --color-background-light: #f5f7f8;
+  --color-background-dark: #101722;
+
+  /* Dashboard Tokens — Clinical Modern Light */
+  --color-dash-bg: #f8fafc;
+  --color-dash-surface: #ffffff;
+  --color-dash-card: #f1f5f9;
+  --color-dash-border: #e2e8f0;
+  --color-dash-accent: #007AFF;
+  --color-dash-accent-dim: rgba(0, 122, 255, 0.15);
+  --color-dash-emerald: #10b981;
+  --color-dash-amber: #f59e0b;
+  --color-dash-text: #1e293b;
+  --color-dash-text-dim: #94a3b8;
+  --color-dash-danger: #ef4444;
+
+  /* Typography */
+  --font-display: "Space Grotesk", sans-serif;
+  --font-sans: "Space Grotesk", sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+
+  /* Background Image */
+  --background-image-grid-pattern: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%236200ea' fill-opacity='0.03' fill-rule='evenodd'%3E%3Cpath d='M0 40L40 0H20L0 20M40 40V20L20 40'/%3E%3C/g%3E%3C/svg%3E");
+
+  /* Animations */
+  --animate-float: float 6s ease-in-out infinite;
+  --animate-float-delayed: float 7s ease-in-out infinite 1s;
+  --animate-dash: dash 5s linear infinite;
+  --animate-spin-slow: spin 10s linear infinite;
+}
+
+/* Keyframes — MUST be outside @theme */
+@keyframes float {
+
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes dash {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+/* Custom Component Classes */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+}
+
+.glass-card {
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  transition: all 0.3s;
+}
+
+.glass-card:hover {
+  transform: translateY(-4px);
+  background: rgba(255, 255, 255, 0.85);
+  box-shadow: 0 20px 25px -5px rgba(98, 0, 234, 0.1);
+  border-color: rgba(98, 0, 234, 0.3);
+}
+
+.hero-glow {
+  background: radial-gradient(circle at center, rgba(98, 0, 234, 0.15) 0%, rgba(255, 255, 255, 0) 70%);
+}
+
+.cta-gradient {
+  background: linear-gradient(135deg, #4f00d6 0%, #7c4dff 100%);
+}
+
+/* Dashboard Utilities */
+.dash-card {
+  background: var(--color-dash-card);
+  border: 1px solid var(--color-dash-border);
+  border-radius: 0.75rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+}
+
+.dash-glow-btn {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s;
+}
+
+.dash-glow-btn::after {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border-radius: inherit;
+  background: linear-gradient(135deg, var(--color-dash-accent), transparent, var(--color-dash-accent));
+  opacity: 0;
+  z-index: -1;
+  transition: opacity 0.3s;
+}
+
+.dash-glow-btn:hover::after {
+  opacity: 0.5;
+}
+
+.dash-glow-btn:hover {
+  box-shadow: 0 0 20px rgba(0, 122, 255, 0.2), 0 0 40px rgba(0, 122, 255, 0.08);
+}
+
+@keyframes pulse-glow {
+
+  0%,
+  100% {
+    box-shadow: 0 0 5px rgba(0, 122, 255, 0.3);
+  }
+
+  50% {
+    box-shadow: 0 0 20px rgba(0, 122, 255, 0.5), 0 0 40px rgba(0, 122, 255, 0.15);
+  }
+}
+
+@keyframes blink-live {
+
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.3;
+  }
+}
+
+.dash-grid-bg {
+  background-image:
+    radial-gradient(circle, rgba(0, 122, 255, 0.06) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+html,
+body {
+  font-family: "Space Grotesk", sans-serif;
+  background-color: #f5f7f8;
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+  color: #334155;
+}
